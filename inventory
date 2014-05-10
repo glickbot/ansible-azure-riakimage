@@ -1,0 +1,11 @@
+[images]
+BashoRiak148
+
+[all:vars]
+image=0b11de9248dd4d87b18621318e037d37__RightImage-CentOS-6.4-x64-v13.5.0.2
+distro=redhat
+disk=sda
+ansible_ssh_user=riakadmin
+ansible_sudo_pass=Riak%admin1
+ansible_ssh_private_key_file=./keys/azure.pem
+location=East US

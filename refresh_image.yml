@@ -1,0 +1,5 @@
+- include: wipe_image.yml
+- include: create_image.yml
+- include: wait_for_image.yml
+- include: configure_image.yml
+- include: capture_image.yml

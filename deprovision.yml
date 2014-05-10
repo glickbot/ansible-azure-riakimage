@@ -1,0 +1,1 @@
+- shell: waagent -force -deprovision+user

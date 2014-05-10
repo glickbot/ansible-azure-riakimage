@@ -1,0 +1,5 @@
+- shell: cat /var/log/firstboot.log
+  register: firstboot
+- debug: var=firstboot.stdout
+- shell: ps ax|grep -i beam
+- shell: service riak ping

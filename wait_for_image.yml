@@ -1,0 +1,10 @@
+- hosts: images
+  connection: local
+  tasks:
+  - action: shell azure vm show {{ inventory_hostname }} --json | jq -r '.InstanceStatus'
+    register: vm_show
+    until: vm_show.stdout == "ReadyRole" or vm_show.stdout == "Failed"
+    failed_when: vm_show.stdout == "Failed"
+    retries: 15
+    delay: 60
+  - action: shell azure vm show {{ inventory_hostname }} --json > ./json/{{ inventory_hostname }}.json
