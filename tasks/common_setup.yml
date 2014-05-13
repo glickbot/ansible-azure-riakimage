@@ -1,18 +1,15 @@
 - lineinfile: dest=/etc/sudoers regexp='^Defaults:root' line='Defaults:root !requiretty'
 
-- copy: src=limits.conf dest=/etc/security/limits.d/90-nofile-riak.conf
-- copy: src=riak-app.config dest=/etc/riak/app.config
-- copy: src=riak-vm.args dest=/etc/riak/vm.args
-- copy: src=firstboot dest=/usr/sbin/firstboot mode=0755
-- copy: src=waagent.conf dest=/etc/waagent.conf
+- copy: src=limits.conf dest=/etc/security/limits.d/90-nofile-riak.conf owner=root group=root
+- copy: src=riak-app.config dest=/etc/riak/app.config owner=root group=root
+- copy: src=riak-vm.args dest=/etc/riak/vm.args owner=root group=root
+- copy: src=firstboot dest=/usr/sbin/firstboot mode=0755 owner=root group=root
+- copy: src=waagent.conf dest=/etc/waagent.conf owner=root group=root
 
 - command: df -T /var/lib/riak
   register: df
 
 - mount: "name={{ df.stdout_lines[-1].split(' ')[5] }} src={{ df.stdout_lines[-1].split(' ')[1] }} fstype={{ df.stdout_lines[-1].split(' ')[2] }} opts=noatime state=present"
-
-- lineinfile: dest=/etc/rc.d/rc.local regexp='^echo deadline' line='echo deadline > /sys/block/sda/queue/scheduler'
-- lineinfile: dest=/etc/rc.d/rc.local regexp='^echo 1024' line='echo 1024 > /sys/block/sda/queue/nr_requests'
 
 - sysctl: name="{{ item }}" state=absent reload=no
   with_items:

@@ -1,6 +1,8 @@
 - yum: "name=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm state=installed"
 - yum: name=riak state=installed
+
 - yum: name=libselinux-python state=installed
+  when: ansible_selinux == true
 
 - command: iptables -nL
   register: iptables
@@ -15,3 +17,5 @@
   when: iptables.stdout.find(item) == -1
 
 - command: service iptables save
+- lineinfile: dest=/etc/rc.d/rc.local regexp='^echo deadline' line='echo deadline > /sys/block/{{ disk }}/queue/scheduler'
+- lineinfile: dest=/etc/rc.d/rc.local regexp='^echo 1024' line='echo 1024 > /sys/block/{{ disk }}/queue/nr_requests'

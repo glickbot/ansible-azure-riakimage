@@ -1,7 +1,8 @@
 - apt_key: url=http://apt.basho.com/gpg/basho.apt.key state=present
 - apt_repository: repo="deb http://apt.basho.com {{ ansible_distribution_release }} main" state=present
 - apt: name=riak state=installed
-- apt: name=libselinux-python state=installed
+- apt: name=python-selinux state=installed
+  when: ansible_selinux == true
 
 - ufw: rule=allow port={{ item }} proto=tcp
   with_items:
@@ -10,3 +11,8 @@
     - "4369"
     - "8099"
     - "8087"
+
+- lineinfile: dest=/etc/pam.d/common-session regexp='session\s*required\*pam_limits.so' line='session    required   pam_limits.so' state=present
+
+- lineinfile: dest=/etc/rc.local regexp='^echo deadline' line='echo deadline > /sys/block/{{ disk }}/queue/scheduler'
+- lineinfile: dest=/etc/rc.local regexp='^echo 1024' line='echo 1024 > /sys/block/{{ disk }}/queue/nr_requests'

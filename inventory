@@ -2,11 +2,8 @@
 localhost
 
 [images]
-BashoRiak148 ansible_os_family=RedHat image_label=OpenLogic
-
-[new]
-BashoRiak148Centos ansible_os_family=RedHat image_label=OpenLogic
-BashoRiak148Ubuntu ansible_os_family=Debian image=b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-12_04_4-LTS-amd64-server-20140428-en-us-30GB
+#BashoRiak148Centos image_label=OpenLogic
+BashoRiak148Ubuntu image_label="Ubuntu Server 12.04.4 LTS DAILY"
 
 [all:vars]
 disk=sda

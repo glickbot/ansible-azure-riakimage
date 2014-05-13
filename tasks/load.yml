@@ -8,3 +8,4 @@
 - set_fact:
     ansible_ssh_host: "{{ azure['Network']['Endpoints'][0]['Vip'] }}"
     ansible_ssh_port: "{{ azure['Network']['Endpoints'][0]['Port'] }}"
+- setup:

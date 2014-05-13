@@ -15,3 +15,4 @@
   retries: 3
   delay: 5
   when: vm_show.rc == 1 and vm_show.stderr.find("No VMs found") != -1
+  serial: 1
