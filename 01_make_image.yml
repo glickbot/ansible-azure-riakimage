@@ -20,5 +20,6 @@
   - include: tasks/create.yml
   - include: tasks/wait.yml
   - include: tasks/load.yml
-  #- { include: tasks/setup.yml, sudo: true }
-  #- include: tasks/capture.yml
+  - { include: tasks/setup.yml, sudo: true }
+  - include: tasks/capture.yml
+  - include: tasks/remove_service.yml
