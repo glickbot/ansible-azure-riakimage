@@ -1,10 +1,6 @@
-- local_action: command azure vm delete -q {{ nodename }}
-  ignore_errors: true
 - local_action: command azure vm delete -q -b {{ nodename }}
   ignore_errors: true
 - local_action: command azure vm image delete -b {{ nodename }}
   ignore_errors: true
 - local_action: command azure service delete -q {{ nodename }}
-  ignore_errors: true
-- local_action: command azure service delete -q {{ nodename }}-cluster
   ignore_errors: true
