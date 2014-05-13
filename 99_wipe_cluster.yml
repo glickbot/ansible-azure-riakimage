@@ -1,0 +1,18 @@
+- hosts: images
+  gather_facts: false
+  tasks:
+  - local_action: add_host
+                  name="{{ inventory_hostname }}-node{{ item }}"
+                  groups=cluster
+                  nodename="{{ inventory_hostname }}-node{{ item }}"
+    with_sequence: count={{ cluster_size }}
+
+- hosts: cluster
+  gather_facts: false
+  tasks:
+  - include: tasks/wipe.yml
+
+- hosts: images
+  gather_facts: false
+  tasks:
+  - local_action: command azure service delete "{{ inventory_hostname }}-cluster"

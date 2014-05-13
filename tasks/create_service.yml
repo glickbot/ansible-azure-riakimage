@@ -1,0 +1,1 @@
+- local_action: command azure service create --location "{{ location }}" {{ dnsname }}

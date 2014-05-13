@@ -1,0 +1,5 @@
+- hosts: localhost
+  connection: local
+  tasks: 
+  - include: tasks/get_jq.yml
+  - include: tasks/make_key.yml

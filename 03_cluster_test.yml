@@ -1,0 +1,31 @@
+- hosts: images
+  gather_facts: false
+  tasks:
+  - local_action: add_host
+                  name="{{ inventory_hostname }}-node{{ item }}"
+                  image="{{ inventory_hostname }}"
+                  groups=cluster
+                  ansible_ssh_port=220{{ item }}
+                  #nodeimage="{{ inventory_hostname }}"
+                  #nodename="{{ inventory_hostname }}-node{{ item }}"
+                  #dnsname="{{ inventory_hostname }}-cluster"
+                  #ansible_ssh_user="{{ user }}"
+                  #ansible_sudo_pass="{{ pass }}"
+                  #ansible_ssh_private_key_file="{{ key }}"
+    with_sequence: count={{ cluster_size }}
+  - { include: tasks/create_service.yml, dnsname: "{{ inventory_hostname }}-cluster" }
+
+- hosts: cluster
+  gather_facts: false
+  vars:
+    nodeimage: "{{ image }}"
+    dnsname: "{{ image }}-cluster"
+    nodename: "{{ inventory_hostname }}"
+    ansible_ssh_user: "{{ user }}"
+    ansible_sudo_pass: "{{ pass }}"
+    ansible_ssh_private_key_file: "{{ key }}"
+  tasks:
+  - include: tasks/create.yml
+  - include: tasks/wait.yml
+  - include: tasks/load.yml
+  - { include: tasks/test.yml, sudo: true }

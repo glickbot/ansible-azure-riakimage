@@ -1,0 +1,12 @@
+- apt_key: url=http://apt.basho.com/gpg/basho.apt.key state=present
+- apt_repository: repo="deb http://apt.basho.com {{ ansible_distribution_release }} main" state=present
+- apt: name=riak state=installed
+- apt: name=libselinux-python state=installed
+
+- ufw: rule=allow port={{ item }} proto=tcp
+  with_items:
+    - "8098"
+    - "6000:7999"
+    - "4369"
+    - "8099"
+    - "8087"

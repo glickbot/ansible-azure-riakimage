@@ -7,8 +7,17 @@ exec 1<>$LOGFILE
 exec 2>&1
 
 echo "Started firstboot"
+FB_FQDN=""
+while [ -z "$FB_FQDN" ]; do
+    echo "`date`: Grabbing FQDN..."
+    FB_FQDN=`hostname --fqdn`
+    if [ -z "$FB_FQDN" ]; then
+        echo "`date`: FQDN Not Ready, waiting..."
+        sleep 30
+    fi
+done
 
-/usr/bin/perl -pi -e "s/^-name riak.*$/-name riak\@`hostname --fqdn`/g" /etc/riak/vm.args
+/usr/bin/perl -pi -e "s/^-name riak.*$/-name riak\@$FB_FQDN/g" /etc/riak/vm.args
 
 /sbin/chkconfig --add riak
 /sbin/service riak start

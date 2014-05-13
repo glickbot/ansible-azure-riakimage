@@ -1,0 +1,4 @@
+- local_action: file path"./keys" state=directory
+- local_action: command openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout azure.key -out azure.pem chdir=./keys creates=./keys/azure.key
+- local_action: file path="./keys/azure.key" chmod=0600
+- local_action: command openssl  x509 -outform der -in azure.pem -out azure.cer chdir=./keys creates=./keys/azure.cer

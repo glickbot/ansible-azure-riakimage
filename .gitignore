@@ -1,7 +1,6 @@
 json/*
 *.retry
 *.err
-*.key
-*.cer
-*.pem
+keys/*
 *.swp
+bin/jq

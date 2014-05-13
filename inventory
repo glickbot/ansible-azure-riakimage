@@ -2,14 +2,19 @@
 localhost
 
 [images]
-BashoRiak148
+BashoRiak148 image_label=OpenLogic
+
+[new]
+BashoRiak148Centos ansible_os_family=RedHat image=5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-65-20140415
+BashoRiak148Ubuntu ansible_os_family=Debian image=b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-12_04_4-LTS-amd64-server-20140428-en-us-30GB
 
 [all:vars]
-image=0b11de9248dd4d87b18621318e037d37__RightImage-CentOS-6.4-x64-v13.5.0.2
-#image=5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-65-20140415
+ansible_os_family=RedHat
+image=5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-65-20140415
 distro=redhat
 disk=sda
 user=riakadmin
 pass=Riak%admin1
 key=./keys/azure.pem
 location=East US
+cluster_size=3

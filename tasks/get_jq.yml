@@ -1,0 +1,9 @@
+- local_action: file path="./bin" state=directory
+- local_action: command curl -o "./bin/jq" "http://stedolan.github.io/jq/download/linux64/jq" creates="./bin/jq"
+  when: ansible_os_family != "Darwin"
+
+- local_action: command curl -o "./bin/jq" "http://stedolan.github.io/jq/download/osx64/jq" creates="./bin/jq"
+  when: ansible_os_family == "Darwin"
+
+
+- local_action: file path="./bin/jq" mode=0775

@@ -6,3 +6,5 @@
   ignore_errors: true
 - local_action: command azure service delete -q {{ nodename }}
   ignore_errors: true
+- local_action: command azure service delete -q {{ nodename }}-cluster
+  ignore_errors: true

@@ -1,0 +1,17 @@
+- yum: "name=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm state=installed"
+- yum: name=riak state=installed
+- yum: name=libselinux-python state=installed
+
+- command: iptables -nL
+  register: iptables
+
+- command: iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport {{ item }} -j ACCEPT
+  with_items:
+  - "8098"
+  - "6000:7999"
+  - "4369"
+  - "8099"
+  - "8087"
+  when: iptables.stdout.find(item) == -1
+
+- command: service iptables save

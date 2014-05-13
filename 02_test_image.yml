@@ -2,6 +2,7 @@
   gather_facts: false
   vars:
     nodename: "{{ inventory_hostname }}-test"
+    dnsname: "{{ inventory_hostname }}-test"
     nodeimage: "{{ inventory_hostname }}"
     ansible_ssh_user: "{{ user }}"
     ansible_sudo_pass: "{{ pass }}"

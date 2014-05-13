@@ -1,4 +1,4 @@
-- local_action: command azure vm create --location "{{ location }}" --ssh --ssh-cert {{ key }} -n {{ nodename }} {{ nodename }} {{ nodeimage }} {{ user }} {{ pass }}
+- local_action: command azure vm create --location "{{ location }}" --ssh "{{ ansible_ssh_port | d(22) }}" --ssh-cert {{ key }} -n {{ nodename }} -c {{ dnsname }} {{ nodeimage }} {{ user }} {{ pass }}
   register: vm_create
   until: vm_create.rc == 0
   retries: 3
