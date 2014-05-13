@@ -1,4 +1,0 @@
-- hosts: images
-  connection: local
-  tasks:
-  - command: azure vm create --location "{{ location }}" --ssh --ssh-cert {{ ansible_ssh_private_key_file }} -n {{ inventory_hostname }} {{ inventory_hostname }} {{ image }} {{ ansible_ssh_user }} {{ ansible_sudo_pass }}

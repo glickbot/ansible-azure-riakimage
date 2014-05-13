@@ -1,0 +1,10 @@
+- local_action: command azure vm show {{ nodename }} --json
+  until: azure.rc == 0
+  retries: 3
+  delay: 5
+  register: azure
+- set_fact:
+    azure: "{{ azure.stdout }}"
+- set_fact:
+    ansible_ssh_host: "{{ azure['Network']['Endpoints'][0]['Vip'] }}"
+    ansible_ssh_port: "{{ azure['Network']['Endpoints'][0]['Port'] }}"

@@ -1,6 +1,0 @@
-- hosts: images
-  connection: local
-  tasks:
-  - command: azure vm shutdown {{ inventory_hostname }}
-  - command: azure vm capture --delete {{ inventory_hostname }} {{ inventory_hostname }}
-  - command: azure service delete {{ inventory_hostname }}

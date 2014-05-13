@@ -1,0 +1,6 @@
+- local_action: shell azure vm show {{ nodename }} --json | jq -r '.InstanceStatus'
+  register: vm_show
+  until: vm_show.stdout == "ReadyRole" or vm_show.stdout == "Failed"
+  failed_when: vm_show.stdout == "Failed"
+  retries: 15
+  delay: 60

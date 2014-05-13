@@ -1,0 +1,17 @@
+- command: /usr/sbin/waagent -force -deprovision+user
+  sudo: true
+- local_action: command azure vm shutdown {{ nodename }}
+  register: shutdown
+  until: shutdown.rc == 0
+  retries: 3
+  delay: 5
+- local_action: command azure vm capture --delete {{ nodename }} {{ nodename }}
+  register: capture
+  until: capture.rc == 0
+  retries: 3
+  delay: 5
+- local_action: command azure service delete {{ nodename }}
+  register: delete
+  until: delete.rc == 0
+  retries: 3
+  delay: 5

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+LOGFILE=/var/log/firstboot.log
+exec 1<&-
+exec 2<&-
+exec 1<>$LOGFILE
+exec 2>&1
+
+echo "Started firstboot"
+
+/usr/bin/perl -pi -e "s/^-name riak.*$/-name riak\@`hostname --fqdn`/g" /etc/riak/vm.args
+
+/sbin/chkconfig --add riak
+/sbin/service riak start
+/sbin/service riak ping
+echo "Finished firstboot"

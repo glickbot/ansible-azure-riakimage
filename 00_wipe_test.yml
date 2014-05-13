@@ -1,0 +1,7 @@
+- hosts: images
+  gather_facts: false
+  #sudo: True
+  vars:
+    nodename: "{{ inventory_hostname }}-test"
+  tasks:
+  - include: tasks/wipe.yml

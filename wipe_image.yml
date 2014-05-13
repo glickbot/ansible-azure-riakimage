@@ -1,7 +1,0 @@
-- hosts: images
-  connection: local
-  tasks:
-  - command: azure vm image delete -q -b {{ inventory_hostname }}
-    ignore_errors: true
-  - command: azure vm delete -q -b {{ inventory_hostname }}
-    ignore_errors: true

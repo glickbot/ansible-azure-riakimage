@@ -1,6 +1,8 @@
 - yum: "name=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm state=installed"
 - yum: name=riak state=installed
 
+- lineinfile: dest=/etc/sudoers regexp='^Defaults:root' line='Defaults:root !requiretty'
+
 - command: iptables -nL
   register: iptables
 
