@@ -8,8 +8,6 @@ BashoRiak148 image_label=OpenLogic
 
 [all:vars]
 disk=sda
-user=riakadmin
-pass=Riak%admin1
 azure_cert=./keys/azure.pem
 key=./keys/azure.key
 location=East US
