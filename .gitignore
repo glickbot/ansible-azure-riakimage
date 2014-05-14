@@ -4,3 +4,4 @@ json/*
 keys/*
 *.swp
 bin/jq
+inventory/group_vars/all

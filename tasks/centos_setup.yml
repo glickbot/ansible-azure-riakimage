@@ -2,7 +2,6 @@
 - yum: name=riak state=installed
 
 - yum: name=libselinux-python state=installed
-  when: ansible_selinux == true
 
 - command: iptables -nL
   register: iptables
