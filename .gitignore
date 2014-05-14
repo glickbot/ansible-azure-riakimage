@@ -4,3 +4,4 @@ json/*
 keys/*
 *.swp
 bin/jq
+library/system/ufw
