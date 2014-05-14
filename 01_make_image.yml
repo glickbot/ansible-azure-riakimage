@@ -20,6 +20,7 @@
   - include: tasks/create.yml
   - include: tasks/wait.yml
   - include: tasks/load.yml
+  - debug: msg="{{ ansible_selinux }}"
   - { include: tasks/setup.yml, sudo: true }
   - { include: tasks/capture.yml }
   - { include: tasks/remove_service.yml }

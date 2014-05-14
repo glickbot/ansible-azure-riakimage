@@ -1,0 +1,4 @@
+# Copy me to ./inventory/group_vars/all
+# Replace these values with something else
+user: randomuser
+pass: randompass

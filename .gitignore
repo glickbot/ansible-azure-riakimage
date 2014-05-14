@@ -5,3 +5,4 @@ keys/*
 *.swp
 bin/jq
 library/system/ufw
+inventory/group_vars/all
