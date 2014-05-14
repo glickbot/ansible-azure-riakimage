@@ -1,6 +1,13 @@
-- include: 00_wipe_image.yml
-#- include: 00_wipe_test.yml
-- include: 00_wipe_cluster.yml
+- include: 00_get_reqs.yml
+
+- include: 99_wipe_image.yml
 - include: 01_make_image.yml
-#- include: 02_test_image.yml
-- include: 03_cluster_test.yml
+
+
+- include: 99_wipe_test.yml
+- include: 02_test_image.yml
+#- include: 99_wipe_test.yml
+
+#- include: 99_wipe_cluster.yml
+#- include: 03_cluster_test.yml
+#- include: 99_wipe_cluster.yml

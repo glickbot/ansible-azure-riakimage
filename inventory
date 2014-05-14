@@ -2,8 +2,9 @@
 localhost
 
 [images]
-#BashoRiak148Centos image_label=OpenLogic
-BashoRiak148Ubuntu image_label="Ubuntu Server 12.04.4 LTS DAILY"
+BashoRiak148 image_label=OpenLogic
+# Ubuntu not working. The ssh service on the created image doesn't start
+#BashoRiak148Ubuntu image_label="Ubuntu Server 12.04.4 LTS DAILY"
 
 [all:vars]
 disk=sda
