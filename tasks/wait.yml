@@ -1,6 +1,6 @@
 - local_action: shell azure vm show {{ nodename }} --json | ./bin/jq -r '.InstanceStatus'
   register: wait_vm_show
   until: wait_vm_show.stdout == "ReadyRole" or wait_vm_show.stdout == "Failed"
-  failed_when: wait_vm_show.stdout == "Failed" or wait_vm_show.rc != 0
+  failed_when: wait_vm_show.stdout == "ProvisioningFailed" or wait_vm_show.rc != 0
   retries: 15
   delay: 60

@@ -9,10 +9,9 @@
   ignore_errors: true
   register: vm_show
 
-- local_action: command azure vm create --ssh "{{ ansible_ssh_port | d(22) }}" --ssh-cert {{ key }} -n {{ nodename }} -c {{ dnsname }} {{ nodeimage }} {{ user }} {{ pass }}
+- local_action: command azure vm create --ssh "{{ ansible_ssh_port | d(22) }}" --ssh-cert {{ azure_cert }} -n {{ nodename }} -c {{ dnsname }} {{ nodeimage }} {{ user }} {{ pass }}
   register: vm_create
   until: vm_create.rc == 0
   retries: 3
   delay: 5
   when: vm_show.rc == 1 and vm_show.stderr.find("No VMs found") != -1
-  serial: 1

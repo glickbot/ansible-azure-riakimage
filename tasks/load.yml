@@ -8,4 +8,8 @@
 - set_fact:
     ansible_ssh_host: "{{ azure['Network']['Endpoints'][0]['Vip'] }}"
     ansible_ssh_port: "{{ azure['Network']['Endpoints'][0]['Port'] }}"
+- local_action: wait_for host={{ ansible_ssh_host }} port=22 timeout=900
+- debug: var=ansible_ssh_host
 - setup:
+- debug: var=ansible_ssh_host
+
