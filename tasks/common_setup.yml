@@ -4,7 +4,7 @@
 - copy: src=riak-app.config dest=/etc/riak/app.config owner=root group=root
 - copy: src=riak-vm.args dest=/etc/riak/vm.args owner=root group=root
 - copy: src=firstboot dest=/usr/sbin/firstboot mode=0755 owner=root group=root
-- copy: src=waagent.conf dest=/etc/waagent.conf owner=root group=root
+#- copy: src=waagent.conf dest=/etc/waagent.conf owner=root group=root
 
 - command: df -T /var/lib/riak
   register: df

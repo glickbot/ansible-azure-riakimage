@@ -1,8 +1,5 @@
 - hosts: localhost
   connection: local
-  tasks: 
-  - include: tasks/get_jq.yml
-
 - hosts: images
   gather_facts: false
   vars:
@@ -12,7 +9,7 @@
     ansible_sudo_pass: "{{ pass }}"
     ansible_ssh_private_key_file: "{{ key }}"
   tasks:
-  - local_action: shell azure vm image list --json | ./bin/jq '[.[] | select(.Label == "{{ image_label }}")] | sort_by("PiblishedDate")[-1:] | .[].Name' -r
+  - local_action: shell azure vm image list --json | jq '[.[] | select(.label == "{{ image_label }}")] | sort_by("publishedDate")[-1:] | .[].name' -r
     register: image_res
   - set_fact:
       image: "{{ image_res.stdout }}"
@@ -20,7 +17,6 @@
   - include: tasks/create.yml
   - include: tasks/wait.yml
   - include: tasks/load.yml
-  - debug: msg="{{ ansible_selinux }}"
   - { include: tasks/setup.yml, sudo: true }
   - { include: tasks/capture.yml }
   - { include: tasks/remove_service.yml }

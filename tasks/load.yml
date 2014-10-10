@@ -4,9 +4,9 @@
   delay: 5
   register: azure
 - set_fact:
-    azure: "{{ azure.stdout }}"
+    azure: "{{ azure.stdout|from_json }}"
 - set_fact:
-    ansible_ssh_host: "{{ azure['Network']['Endpoints'][0]['Vip'] }}"
-    ansible_ssh_port: "{{ azure['Network']['Endpoints'][0]['Port'] }}"
+    ansible_ssh_host: "{{ azure.Network.Endpoints[0].virtualIPAddress }}"
+    ansible_ssh_port: "{{ azure.Network.Endpoints[0].port }}"
 - local_action: wait_for host={{ ansible_ssh_host }} port=22 timeout=900
 - setup:

@@ -4,8 +4,10 @@
 - include: 01_make_image.yml
 
 
-- include: 99_wipe_test.yml
-- include: 02_test_image.yml
+ - include: 99_wipe_test.yml
+ - include: 02_test_image.yml
+
+
 #- include: 99_wipe_test.yml
 
 #- include: 99_wipe_cluster.yml

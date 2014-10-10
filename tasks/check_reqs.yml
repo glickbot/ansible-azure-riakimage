@@ -1,0 +1,4 @@
+- local_action: command which {{ item }}
+  with_items:
+    jq
+    azure

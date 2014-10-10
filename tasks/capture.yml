@@ -1,5 +1,7 @@
-- command: /usr/sbin/waagent -force -deprovision+user
+- shell: /usr/sbin/waagent -force -deprovision+user
   sudo: true
+  async: 5
+  poll: 0
 - local_action: command azure vm shutdown {{ nodename }}
   register: shutdown
   until: shutdown.rc == 0

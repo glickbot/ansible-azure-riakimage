@@ -1,4 +1,5 @@
-- yum: "name=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm state=installed"
+- shell: curl https://packagecloud.io/install/repositories/basho/riak/script.rpm | sudo bash
+#- yum: "name=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm state=installed"
 - yum: name=riak state=installed
 
 - yum: name=libselinux-python state=installed

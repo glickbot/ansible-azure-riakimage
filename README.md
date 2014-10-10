@@ -4,8 +4,10 @@ Ansible scripts to create & capture images in azure for vmdepot publication
 
 # Requires
 
+
 - azure cli ( link below )
-- ansible 1.6 ( or copy https://raw.githubusercontent.com/ansible/ansible/devel/library/system/ufw into your ./library folder )
+- ansible >1.6 ( or copy https://raw.githubusercontent.com/ansible/ansible/devel/library/system/ufw into your ./library folder )
+- jq ( in path: http://stedolan.github.io/jq/ )
 
 # Usage
 
@@ -16,10 +18,9 @@ http://azure.microsoft.com/en-us/documentation/articles/command-line-tools/
 Copy ```all_template.yml``` to inventory/group_vars/all, and change info inside
 
 Tweak the following play depending on what you want to run:
-    
+
     all.yml
 
 Then run
 
     ansible-playbook all.yml
-
