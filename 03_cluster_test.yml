@@ -1,12 +1,13 @@
 - hosts: images
-#  gather_facts: false
   connection: local
+  #gather_facts: False
   tasks:
   - local_action: add_host
                   name="{{ inventory_hostname }}-node{{ item }}"
                   image="{{ inventory_hostname }}"
                   groups=cluster
                   ansible_ssh_port=220{{ item }}
+                  ansible_ssh_host="{{ inventory_hostname }}-cluster"
                   #nodeimage="{{ inventory_hostname }}"
                   #nodename="{{ inventory_hostname }}-node{{ item }}"
                   #dnsname="{{ inventory_hostname }}-cluster"
@@ -26,7 +27,7 @@
       ansible_ssh_user: "{{ user }}"
       ansible_sudo_pass: "{{ pass }}"
       ansible_ssh_private_key_file: "{{ key }}"
- 
+
 - hosts: cluster
   connection: local
   serial: 1

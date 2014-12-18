@@ -1,21 +1,27 @@
+- yum: name=libselinux-python state=installed
+- command: yum -y update
+
 - shell: curl https://packagecloud.io/install/repositories/basho/riak/script.rpm | sudo bash
-#- yum: "name=http://yum.basho.com/gpg/basho-release-6-1.noarch.rpm state=installed"
 - yum: name=riak state=installed
 
-- yum: name=libselinux-python state=installed
+- service: name=iptables state=stopped enabled=no
 
-- command: iptables -nL
-  register: iptables
+# - command: iptables -nL
+#   register: iptables
+#
+# - command: iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport {{ item }} -j ACCEPT
+#   with_items:
+#   - "8098"
+#   - "6000:7999"
+#   - "4369"
+#   - "8099"
+#   - "8087"
+#   when: iptables.stdout.find(item) == -1
 
-- command: iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport {{ item }} -j ACCEPT
-  with_items:
-  - "8098"
-  - "6000:7999"
-  - "4369"
-  - "8099"
-  - "8087"
-  when: iptables.stdout.find(item) == -1
+# - command: service iptables save
 
-- command: service iptables save
 - lineinfile: dest=/etc/rc.d/rc.local regexp='^echo deadline' line='echo deadline > /sys/block/{{ disk }}/queue/scheduler'
 - lineinfile: dest=/etc/rc.d/rc.local regexp='^echo 1024' line='echo 1024 > /sys/block/{{ disk }}/queue/nr_requests'
+
+- yum: name=yum-security state=installed
+- cron: name=security_updates hour=2 job='yum -y update --security'

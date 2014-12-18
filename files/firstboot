@@ -17,7 +17,7 @@ while [ -z "$FB_FQDN" ]; do
     fi
 done
 
-/usr/bin/perl -pi -e "s/^-name riak.*$/-name riak\@$FB_FQDN/g" /etc/riak/vm.args
+/usr/bin/perl -pi -e "s/^nodename = riak.*$/nodename = riak\@$FB_FQDN/g" /etc/riak/riak.conf
 
 /sbin/chkconfig --add riak
 /sbin/service riak start

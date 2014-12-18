@@ -2,6 +2,7 @@
   sudo: true
   async: 5
   poll: 0
+- pause: minutes=2 prompt="Waiting 2 minutes for deprovisioning"
 - local_action: command azure vm shutdown {{ nodename }}
   register: shutdown
   until: shutdown.rc == 0
