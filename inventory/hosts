@@ -2,7 +2,7 @@
 localhost
 
 [images]
-BashoRiak201 image_label="OpenLogic 6.5"
+BashoRiak202 image_label="Openlogic 6.5"
 # Ubuntu not working. The ssh service on the created image doesn't start
 #BashoRiak148Ubuntu image_label="Ubuntu Server 12.04.4 LTS DAILY"
 
